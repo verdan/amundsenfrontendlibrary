@@ -18,12 +18,14 @@ class User:
                  last_name: str = None,
                  email: str = None,
                  display_name: str = None,
-                 profile_url: str = None) -> None:
+                 profile_url: str = None,
+                 image_url: str = None) -> None:
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.display_name = display_name
         self.profile_url = profile_url
+        self.image_url = image_url
 
     def to_json(self) -> Response:
         user_info = dump_user(self)
@@ -36,6 +38,7 @@ class UserSchema(Schema):
     email = fields.Str(allow_none=True)
     display_name = fields.Str(required=True)
     profile_url = fields.Str(allow_none=True)
+    image_url = fields.Str(allow_none=True)
 
     @pre_load
     def generate_display_name(self, data: Dict) -> Dict:

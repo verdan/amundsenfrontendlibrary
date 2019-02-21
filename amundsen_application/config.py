@@ -9,6 +9,7 @@ class Config:
     COLUMN_STAT_ORDER = None  # type: Dict[str, int]
 
     UNEDITABLE_SCHEMAS = set()  # type: Set[str]
+    APPLY_AUTH_WRAPPERS = None
 
 
 class LocalConfig(Config):

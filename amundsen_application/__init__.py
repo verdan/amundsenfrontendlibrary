@@ -52,4 +52,8 @@ def create_app(config_module_class: str, template_folder: str = None) -> Flask:
     app.register_blueprint(search_blueprint)
     init_routes(app)
 
+    apply_auth_wrappers = os.getenv('APPLY_AUTH_WRAPPERS')
+    if apply_auth_wrappers:
+        apply_auth_wrappers(app)
+
     return app

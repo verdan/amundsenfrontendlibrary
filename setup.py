@@ -4,31 +4,6 @@ import subprocess
 
 from setuptools import setup, find_packages
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-PACKAGE_DIR = os.path.join(BASE_DIR, 'amundsen_application', 'static')
-
-
-def is_npm_installed() -> bool:
-    try:
-        subprocess.check_call(['npm --version'], shell=True)
-        return True
-    except Exception as e:
-        return False
-
-
-def build_js() -> None:
-    if not is_npm_installed():
-        logging.error('npm must be available')
-
-    try:
-        subprocess.check_call(['npm install --only=prod'], cwd=PACKAGE_DIR, shell=True)
-    except Exception as e:
-        logging.warn('Installation of npm dependencies failed')
-        logging.warn(str(e))
-
-
-build_js()
-
 __version__ = '1.0.0'
 
 
