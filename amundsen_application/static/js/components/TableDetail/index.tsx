@@ -7,7 +7,7 @@ import { GetTableDataRequest } from '../../ducks/tableMetadata/reducer';
 
 import DataPreviewButton from '../../containers/TableDetail/DataPreviewButton';
 import TableDescEditableText from '../../containers/TableDetail/TableDescEditableText';
-import TableOwnerEditableList from '../../containers/TableDetail/TableOwnerEditableList';
+import TableOwnerList from '../../containers/TableDetail/TableOwnerList';
 import TagInput from '../../containers/TagInput';
 
 import AppConfig from '../../../config/config';
@@ -177,22 +177,14 @@ class TableDetail extends React.Component<TableDetailProps & RouteComponentProps
     const entityCardSections = [];
 
     // "Owned By" section
-    const listItemRenderer = (props) => {
-      return React.createElement(AvatarLabel, {label: props.label});
+    const ownerSectionRenderer = () => {
+      return (
+        <TableOwnerList
+          readOnly={false}
+        />
+      );
     };
-    const listItemProps = data.owners.map((entry) => {
-      return { label: entry.display_name };
-    });
-    const listItemPropTypes = [{name:'email', property: 'label', type: 'text'}];
-    const ownerSectionRenderer = (readOnly: boolean) => {
-      return React.createElement(TableOwnerEditableList, {
-        readOnly,
-        listItemProps,
-        listItemPropTypes,
-        listItemRenderer,
-      });
-    };
-    entityCardSections.push({'title': 'Owned By', 'contentRenderer': ownerSectionRenderer, 'isEditable': true});
+    entityCardSections.push({'title': 'Owned By', 'contentRenderer': ownerSectionRenderer, 'isEditable': false});
 
 
     // "Frequent Users" section
