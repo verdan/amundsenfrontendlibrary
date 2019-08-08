@@ -6,3 +6,5 @@ recursive-include amundsen_application/static/images *
 recursive-include amundsen_application/.*/static/dist *
 recursive-include amundsen_application/.*/static/fonts *
 recursive-include amundsen_application/.*/static/images *
+
+include requirements3.txt
